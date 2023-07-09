@@ -10,8 +10,8 @@ async function fetchNotes() {
     headers: new Headers({
       apikey: process.env.apikey as string,
     }),
-    // cache: 'no-cache',
-    next: { revalidate: 10 },
+    cache: 'no-store',
+    // next: { revalidate: 10 },
   })
 
   if (!response.ok) {
