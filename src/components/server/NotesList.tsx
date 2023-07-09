@@ -6,15 +6,13 @@ type Note = Database['public']['Tables']['notes']['Row']
 async function fetchNotes() {
   await new Promise((resolve) => setTimeout(resolve, 2000))
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/notes?select=*`,
-    {
-      headers: new Headers({
-        apikey: process.env.apikey as string,
-      }),
-      cache: 'no-cache',
-    }
-  )
+  const response = await fetch(`${process.env.url}/rest/v1/notes?select=*`, {
+    headers: new Headers({
+      apikey: process.env.apikey as string,
+    }),
+    // cache: 'no-cache',
+    next: { revalidate: 10 },
+  })
 
   if (!response.ok) {
     throw new Error(response.statusText)
