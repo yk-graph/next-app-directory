@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="m-10 text-center">
       <p>This is Home Page</p>
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Spinner color="border-green-500" />}>
         <NotesList />
       </Suspense>
       <TimerCounter />
